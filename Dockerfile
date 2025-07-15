@@ -32,4 +32,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:5000/health || exit 1
 
 # Run the app with Gunicorn in production
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "--workers", "1", "--timeout", "300", "app:app"]
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 300 app:app
+
