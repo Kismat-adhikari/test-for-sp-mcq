@@ -53,8 +53,11 @@ def download_audio(youtube_url, output_path):
             'http_headers': {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
             },
-            'extractor_retries': 2,
-            'fragment_retries': 2,
+            'extractor_retries': 5, # Increase retries
+            'fragment_retries': 5, # Increase retries
+            'retries': 5, # Increase general retries
+            'geo_bypass': True, # Attempt to bypass geo-restrictions
+            'geo_bypass_country': 'US', # Specify a country for geo-bypass
         },
         {
             'format': 'worstaudio[filesize<30M]/worstaudio/worst[filesize<30M]',
@@ -76,8 +79,8 @@ def download_audio(youtube_url, output_path):
             ydl_opts = {
                 'outtmpl': output_path + '.%(ext)s',
                 'no_warnings': False,
-                'ignoreerrors': False,
-                'verbose': False,  # Reduce logging for Render
+                'ignoreerrors': True, # Set to True to allow yt-dlp to continue on some errors
+                'verbose': True,  # Enable verbose logging for debugging
                 'extract_flat': False,
                 'no_check_certificate': True,
                 'prefer_insecure': True,
