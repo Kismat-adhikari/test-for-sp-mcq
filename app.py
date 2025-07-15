@@ -63,6 +63,8 @@ def download_audio(youtube_url, output_path):
                 'outtmpl': output_path,
                 'no_warnings': True,
                 'ignoreerrors': True,
+                'verbose': True, # Add verbose logging
+                'ffmpeg_location': '/usr/bin/ffmpeg', # Explicitly set ffmpeg path
                 **strategy
             }
             
